@@ -46,7 +46,7 @@ write-host "Gerando relatorio, aguarde por favor" -ForegroundColor Red
 Start-Sleep -s 75
 
 #excel
-$file = "localdoarquivo" #local do arquivo.
+$file = "localdoarquivo" 
 $ColumnsToKeep = 1,2,3,4,5 # colunas que o script não irá fazer a remoção.
 
 # Create the com object
