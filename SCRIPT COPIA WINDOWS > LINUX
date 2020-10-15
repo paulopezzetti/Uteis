@@ -1,0 +1,9 @@
+#!/bin/bash
+rm -f /IMAGENS-INTRA/*
+rm -f /RELATORIOS-INTRA/*
+smbclient '//w2k12r2-dfs03/Intranet_fotos$' -U 'adm-cesumar\intranetfotos%sbg7AuRf' -c 'prompt OFF;recurse ON; lcd /IMAGENS-INTRA; cd c:\temp; mget *'
+smbclient '//172.16.1.227/vivaintra_relatorio$' -U 'adm-cesumar\intranetfotos%sbg7AuRf' -c 'prompt OFF;recurse ON; lcd /RELATORIOS-INTRA; cd c:\temp; mget *'
+
+####para converter
+
+shc -T -r -f Fotos-Script.sh
