@@ -1,5 +1,50 @@
 #!/bin/bash
 
+Principal() {
+
+  echo "Bem vindo a instalacao do filebeat-client Unicesumar"
+
+  echo "------------------------------------------"
+
+
+  echo "OpÃ§Ãµes:"
+
+  echo
+
+  echo "1. Instalar filebeat-client"
+
+  echo "2. Remover filebeat-client"
+
+  echo "3. Sair"
+
+  echo
+
+  echo -n "Qual a opÃ§Ã£o desejada? "
+
+  read opcao
+
+  case $opcao in
+
+    1) install ;;
+
+    2) remove ;;
+
+    3) exit ;;
+
+    *) "OpÃ§Ã£o desconhecida." ; echo ; Principal ;;
+
+  esac
+
+}
+
+ 
+
+install() {
+  echo "INSIRA O CAMINHO DO LOG A SER COLETADO (EXEMPLO: /var/log/httpd/error.log) "
+
+  echo -n "Por favor insira o caminho: "
+
+  read CAMINHODOLOG
 
 echo "importando chave GPG"
 
@@ -28,9 +73,9 @@ echo "instalando agente filebeat"
 
 sudo yum install filebeat -y
 
-echo "filbeat instalado"
+echo "filebeat instalado"
 
-echo "efetuando configurações"
+echo "efetuando configuraÃ§Ãµes"
 
 rm -rf /etc/filebeat/filebeat.yml
 
@@ -63,10 +108,8 @@ filebeat.inputs:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/httpd/error_log
+    - /var/log/*.log
     
-
-
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
   #exclude_lines: ['^DBG']
@@ -247,6 +290,29 @@ processors:
 
 EOF
 
+sed -i -e "s|/var/log/\*\.log|$CAMINHODOLOG|g" /etc/filebeat/filebeat.yml
+
+
 sudo systemctl enable filebeat
 sudo systemctl start filebeat
-sudo systemctl status filebeat
+
+echo "FILEBEAT-AGENT INSTALADO COM SUCESSO"
+
+}
+
+ 
+
+remove() {
+service filebeat stop
+systemctl disable filebeat
+
+rpm -e filebeat-6.8.13-1.x86_64
+
+rm -rf  /etc/filebeat/
+
+echo "FILEBEAT-CLIENT REMOVIDO COM SUCESSO"
+
+}
+ 
+Principal
+
