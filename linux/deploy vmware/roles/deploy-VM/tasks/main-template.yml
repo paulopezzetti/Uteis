@@ -1,0 +1,30 @@
+---
+- name: CRIANDO VM A PARTIR DO TEMPLATE {{ template_name }}
+  vmware_guest:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: False
+    datacenter: "{{ datacenter_name }}"
+    state: poweredon
+    folder: /{{ datacenter_name }}/vm
+    template: "{{ template_name }}"
+    name: "{{ vm_name }}"
+    annotation: "{{ annotation }}" 
+    cluster: "{{ cluster_name }}"
+    datastore: "{{ virtual_machine_datastore }}"
+    networks:
+      - name: "{{ nome_da_rede }}"
+        ip: "{{ ip_address }}"
+        netmask: 255.255.254.0
+        gateway: "{{ gateway_address }}"
+        start_connected: True
+        type: static                
+    customization:
+      hostname: "{{ vm_name }}"
+      domain: "adm-cesumar.local"
+      dns_servers:
+      - 172.16.0.90
+      - 172.16.0.88
+    wait_for_ip_address: no  
+  delegate_to: localhost

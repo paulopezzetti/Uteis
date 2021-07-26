@@ -1,0 +1,22 @@
+---
+
+##### vCenter #####
+vcenter_hostname: "vcenterp.adm-cesumar.local"
+vcenter_username: "USUARIO"
+vcenter_password: "SENHA"
+datacenter_name: "DC01-Unicesumar"
+cluster_name: "Enc02ClusterProd"
+template_name: "RHEL79"
+vm_name: "NOMEVM"
+annotation: "DESCRICAO"
+virtual_machine_datastore: DS_S1_3PAR8200_ENC02_07
+
+
+#### NETWORK ########
+
+ip_address: "1.1.1.1"
+gateway_address: "2.2.2.2"
+nome_da_rede: "TROCAR_REDE"
+
+##### PACOTES ########
+package: "httpd"
