@@ -16,13 +16,13 @@
     networks:
       - name: "{{ nome_da_rede }}"
         ip: "{{ ip_address }}"
-        netmask: 255.255.254.0
+        netmask: "{{netmask}}"
         gateway: "{{ gateway_address }}"
         start_connected: True
         type: static                
     customization:
       hostname: "{{ vm_name }}"
-      domain: "adm-cesumar.local"
+      domain: "{{ domain }}"
       dns_servers:
       - 172.16.0.90
       - 172.16.0.88

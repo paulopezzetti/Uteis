@@ -10,6 +10,8 @@ template_name: "RHEL79"
 vm_name: "NOMEVM"
 annotation: "DESCRICAO"
 virtual_machine_datastore: "DS_S1_3PAR8200_ENC02_03"
+netmask: "255.255.254.0"
+domain: "adm-cesumar.local"
 
 
 #### NETWORK ########
