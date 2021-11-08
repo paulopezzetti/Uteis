@@ -1,0 +1,10 @@
+- name: COPIANDO SCRIPT PARA INSTALAÇÃO NGAV
+  copy: src=/ANSIBLE/deploy_vmware/files/cylance_rhel7.sh dest=/root mode=0777
+
+- name: EXECUTANDO SCRIPT INSTALAÇÃO NGAV
+  command: sh /root/cylance_rhel7.sh
+
+- name: REMOVE SCRIPT NGAV
+  file:
+    path: /root/cylance_rhel7.sh
+    state: absent

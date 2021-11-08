@@ -1,0 +1,3 @@
+- name: AGUARDANDO CUSTOMIZAÇÕES INICIAIS
+  pause:
+    minutes: 1

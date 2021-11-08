@@ -1,0 +1,10 @@
+- name: COPIANDO SCRIPT PARA INSTALAÇÃO SIEM
+  copy: src=/ANSIBLE/deploy_vmware/files/scriptInstall.sh dest=/root mode=0777
+
+- name: EXECUTANDO SCRIPT INSTALAÇÃO SIEM
+  command: sh /root/scriptInstall.sh
+
+- name: REMOVE SCRIPT SIEM
+  file:
+    path: /root/scriptInstall.sh
+    state: absent

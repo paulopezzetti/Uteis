@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "INFORME O EMAIL DO ADMINISTRADOR (nome.sobrenome@unicesumar.edu.br)"
+echo "INFORME O EMAIL DO ADMINISTRADOR (nome.sobrenome@adm-cesumar.local)"
 read mail
 echo "INFORME A SENHA DO ADMINISTRADOR"
 read -s password
@@ -12,15 +12,18 @@ read ip
 echo "INFORME UMA DESCRIÇÃO PARA O NOVO SERVIDOR"
 read descricao
 clear
-###########CRIANDO ARQUIVOS DE CONFIGURAÃ‡Ã•ES QUE SERÃƒO ALTERADOS#########################
+
+###########CRIANDO ARQUIVOS DE CONFIGURAÇÃO QUE SERAO ALTERADOS#########################
 cp group_vars/all-template group_vars/all
 cp roles/deploy-VM/tasks/main-template.yml roles/deploy-VM/tasks/main.yml
+cp /ANSIBLE/deploy_vmware/hosts-template /ANSIBLE/deploy_vmware/hosts
 #########################################################################################
 
 sed -i 's/USUARIO/'$mail'/' group_vars/all
 sed -i 's/SENHA/'$password'/' group_vars/all
 sed -i 's/NOMEVM/'$server'/' group_vars/all
 sed -i 's/1.1.1.1/'$ip'/' group_vars/all
+sed -i 's/1.1.1.1/'$ip'/' /ANSIBLE/deploy_vmware/hosts
 sed -i 's/DESCRICAO/'$descricao'/' group_vars/all
 
 Principal(){
@@ -28,7 +31,7 @@ Principal(){
 
   echo "------------------------------------------"
 
-  echo "OpÃ§Ãµes:"
+  echo "Opcoes:"
 
   echo
 
@@ -46,7 +49,7 @@ Principal(){
 
   echo
 
-  echo -n "Qual a opÃ§Ã£o desejada? "
+  echo -n "Qual a opcao desejada? "
 
   read opcao
 
@@ -129,7 +132,8 @@ sed -i 's/TROCAR_REDE/'$nome_rede'/' group_vars/all
 
 Principal
 echo "aguarde"
-ansible-playbook main-playbook.yml
+ansible-playbook -i hosts main-playbook.yml
+rm -rf /ANSIBLE/deploy_vmware/hosts
 rm -vf group_vars/all
 rm -vf roles/deploy-VM/tasks/main.yml
 

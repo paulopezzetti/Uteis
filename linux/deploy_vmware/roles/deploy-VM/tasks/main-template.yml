@@ -12,7 +12,7 @@
     name: "{{ vm_name }}"
     annotation: "{{ annotation }}" 
     cluster: "{{ cluster_name }}"
-    datastore: "{{ virtual_machine_datastore }}"
+    datastore: "{{virtual_machine_datastore}}"
     networks:
       - name: "{{ nome_da_rede }}"
         ip: "{{ ip_address }}"

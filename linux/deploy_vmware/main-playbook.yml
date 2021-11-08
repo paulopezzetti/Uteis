@@ -1,0 +1,34 @@
+---
+- hosts: local
+  gather_facts: no
+  roles:
+  - deploy-VM
+
+- hosts: local
+  gather_facts: no
+  roles:
+  - wait
+
+- hosts: atualizar
+  gather_facts: no
+  become: yes
+  roles:
+  - yum-update
+
+- hosts: atualizar
+  gather_facts: no
+  become: yes
+  roles:
+  - ngav
+
+- hosts: atualizar
+  gather_facts: no
+  become: yes
+  roles:
+  - data_protector
+
+- hosts: atualizar
+  gather_facts: no
+  become: yes
+  roles:
+  - siem

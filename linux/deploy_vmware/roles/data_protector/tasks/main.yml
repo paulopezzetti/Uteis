@@ -1,0 +1,10 @@
+- name: COPIANDO SCRIPT PARA INSTALAÇÃO DO AGENT DATA PROTECTOR
+  copy: src=/ANSIBLE/deploy_vmware/files/data_protector_ansible.sh dest=/root mode=0777
+
+- name: EXECUTANDO SCRIPT PARA INSTALAÇÃO DO AGENT DATA PROTECTOR
+  command: sh /root/data_protector_ansible.sh
+
+- name: REMOVENDO O SCRIPT PARA INSTALAÇÃO DO AGENT DATA PROTECTOR
+  file:
+    path: /root/data_protector_ansible.sh
+    state: absent
