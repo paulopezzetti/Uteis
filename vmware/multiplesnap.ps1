@@ -1,3 +1,4 @@
 connect-viserver SEUVCENTER -User SEUUSER -Password SEUPASSWORD
 
-New-Snapshot -VM NOMEDAVM -Name NOMEDOSNAPSHOT -Description DESCRICAODOSNAPSHOT
+$vmlist = Get-Content C:\temp\lista.txt
+New-Snapshot -VM $vmlist -Name teste -Description teste.
