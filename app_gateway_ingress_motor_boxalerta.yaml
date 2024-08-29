@@ -7,7 +7,7 @@ kind: Ingress
 metadata:
   name: motorboxalerta
   annotations:
-    #kubernetes.io/ingress.class: azure/application-gateway
+    kubernetes.io/ingress.class: azure/application-gateway
     appgw.ingress.kubernetes.io/use-private-ip: "true"
     appgw.ingress.kubernetes.io/use-public-ip: "true"
     appgw.ingress.kubernetes.io/appgw-ssl-certificate: "motor-boxalerta-dev-claro-com-br"
