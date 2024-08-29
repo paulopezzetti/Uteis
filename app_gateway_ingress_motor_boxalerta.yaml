@@ -7,10 +7,10 @@ kind: Ingress
 metadata:
   name: motorboxalerta
   annotations:
-    kubernetes.io/ingress.class: azure/application-gateway
+    #kubernetes.io/ingress.class: azure/application-gateway
     appgw.ingress.kubernetes.io/use-private-ip: "true"
     appgw.ingress.kubernetes.io/use-public-ip: "true"
-    appgw.ingress.kubernetes.io/appgw-ssl-certificate: "__AGW_CERTIFICATE_NAME__"
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: "motor-boxalerta-dev-claro-com-br"
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
     appgw.ingress.kubernetes.io/connection-draining: "true"
     appgw.ingress.kubernetes.io/connection-draining-timeout: "10"
@@ -19,6 +19,7 @@ metadata:
     appgw.ingress.kubernetes.io/health-probe-unhealthy-threshold: "2"
     appgw.ingress.kubernetes.io/request-timeout: "600"
 spec:
+  ingressClassName: azure-application-gateway
   rules:
     - http:
         paths:
